@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+.DS_Store
+
+syllabus/syllabus.aux
+
+syllabus/syllabus.dvi
+
+syllabus/syllabus.log
+
+syllabus/syllabus.synctex.gz
