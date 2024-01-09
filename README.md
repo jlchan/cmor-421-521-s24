@@ -1,1 +1,1 @@
-# cmor-421-521-s24
+# Repository for CMOR 421/521: High Performance Computing (Spring 2024)
