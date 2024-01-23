@@ -40,3 +40,7 @@ syllabus/syllabus.dvi
 syllabus/syllabus.log
 
 syllabus/syllabus.synctex.gz
+
+*.cpp~
+
+code/Manifest.toml
