@@ -12,25 +12,24 @@ function matmul_flat_naive!(C, A, B, n)
     end
 end
 
+# Similar to #define BLOCK_SIZE 16
 const BLOCK_SIZE = 16
 
-# -O3 type optimizations:
-# indexing from zero ?
-# @inbounds
-# @muladd: using MuladdMacro
-function matmul_flat_blocked!(C, A, B, n)
+using MuladdMacro
+
+@muladd function matmul_flat_blocked!(C, A, B, n)
     for ii in 0:BLOCK_SIZE:(n - 1)
         for jj in 0:BLOCK_SIZE:(n - 1)
             for kk in 0:BLOCK_SIZE:(n - 1)
                 for i in ii:(ii + BLOCK_SIZE - 1)
                     for j in jj:(jj + BLOCK_SIZE - 1)
-                        Cij = C[(j + 1) + i * n]
+                        @inbounds Cij = C[(j + 1) + i * n]
                         for k in kk:(kk + BLOCK_SIZE - 1)
-                            Aij = A[(k + 1) + i * n]
-                            Bij = B[(j + 1) + k * n]
+                            @inbounds Aij = A[(k + 1) + i * n]
+                            @inbounds Bij = B[(j + 1) + k * n]
                             Cij = Cij + Aij * Bij
                         end
-                        C[(j + 1) + i * n] = Cij
+                        @inbounds C[(j + 1) + i * n] = Cij
                     end
                 end
             end
@@ -38,6 +37,7 @@ function matmul_flat_blocked!(C, A, B, n)
     end
 end
 
+using LinearAlgebra
 
 n = 512
 A = randn(n * n)
@@ -50,8 +50,8 @@ C .= 0
 @time matmul_flat_blocked!(C, A, B, n)
 @assert norm(reshape(C, n, n)' - reshape(A, n, n)' * reshape(B, n, n)') < n * n * eps()
 
-
 using BenchmarkTools
+
 println("Naive flat matmul runtime: ")
 @btime matmul_flat_naive!($A, $B, $C, $n)
 println("Blocked flat matmul runtime: ")
