@@ -29,6 +29,7 @@ function matmul_loopvec!(C, A, B)
     end
 end
 
+n = 512
 A = randn(n, n)
 B = randn(n, n)
 C = zeros(n, n)
