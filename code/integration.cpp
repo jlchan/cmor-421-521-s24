@@ -1,11 +1,12 @@
 #include <omp.h>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
 int main(){
   double sum = 0.0;
-  static int num_steps = 100;
+  int num_steps = 1000;
   double step = 1.0 / (double) num_steps;
   
   double elapsed_time = omp_get_wtime();
@@ -15,5 +16,5 @@ int main(){
   }
   double pi = step * sum;
   elapsed_time = omp_get_wtime() - elapsed_time;
-  cout << "pi = " << pi << " in " << elapsed_time << " secs" << endl;
+  cout << "pi = " << setprecision(7) << pi << " in " << elapsed_time << " secs" << endl;
 }

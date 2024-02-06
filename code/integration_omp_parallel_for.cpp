@@ -10,7 +10,7 @@ int main(){
   double elapsed_time = omp_get_wtime();
   omp_set_num_threads(NUM_THREADS);
   double pi = 0.0;
-#pragma omp parallel for 
+#pragma omp parallel 
 {
     double sum = 0.0; // initialized as a private variable
     #pragma omp for    
