@@ -12,6 +12,9 @@ int main(){
   MPI_Comm_size(MPI_COMM_WORLD, &size);
 
   MPI_Status status;  
+
+  MPI_Barrier(MPI_COMM_WORLD);
+  double start = MPI_Wtime();
   
   int num_steps = 100000000;
   double sum = 0.0;
@@ -24,8 +27,11 @@ int main(){
   double pi;
   MPI_Reduce(&pi_local, &pi, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 
+  MPI_Barrier(MPI_COMM_WORLD);
+  double elapsed = MPI_Wtime() - start;
+  
   if (rank==0){
-    cout << "pi = " << pi << endl;
+    cout << "pi = " << pi << ", elapsed = " << elapsed << endl;
   }
 
   MPI_Finalize();
