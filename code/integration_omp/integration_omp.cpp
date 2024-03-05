@@ -2,11 +2,12 @@
 #include <iostream>
 
 using namespace std;
-static int num_steps = 100000;
 
 int main(){
+  int num_steps = 100000000;
   double sum = 0.0;
   double step = 1.0 / (double) num_steps;
+  omp_set_num_threads(1);
   double elapsed_time = omp_get_wtime();
 #pragma omp parallel
   {

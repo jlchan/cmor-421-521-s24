@@ -4,7 +4,7 @@
 using namespace std;
 
 #define NUM_THREADS 8
-#define PAD 8
+#define PAD 8 // ~64 KB of L1 cache per processor
 int main(){
   double sum[NUM_THREADS][PAD];
   for (int id = 0; id < NUM_THREADS; ++id){

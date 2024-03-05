@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
   double sum = 0.0;
-  int num_steps = 1000;
+  int num_steps = 100000000;
   double step = 1.0 / (double) num_steps;
   
   double elapsed_time = omp_get_wtime();

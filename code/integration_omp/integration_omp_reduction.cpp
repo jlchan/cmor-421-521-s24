@@ -14,7 +14,7 @@ int main(){
     {        
         #pragma omp for reduction (+:sum)  
             for (int i = 0; i < num_steps; ++i){                
-                double x = (i + 0.5) * step; // !!! this is a loop carried dependency
+                double x = (i + 0.5) * step; 
                 sum += 4.0 / (1.0 + x * x);
             }
     } 

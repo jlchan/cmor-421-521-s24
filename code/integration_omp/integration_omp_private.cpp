@@ -9,7 +9,7 @@ int main(){
   double step = 1.0 / (double) num_steps;
   double elapsed_time = omp_get_wtime();
   omp_set_num_threads(NUM_THREADS);
-  double pi = 0.0;
+  double pi = 0.0; // this will be shared
 #pragma omp parallel
 {
     double sum = 0.0; // initialized as a private variable

@@ -4,6 +4,7 @@
 using namespace std;
 
 #define NUM_THREADS 8
+
 int main(){
   int num_steps = 100000000;
   double step = 1.0 / (double) num_steps;
