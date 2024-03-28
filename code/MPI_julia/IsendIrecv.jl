@@ -18,7 +18,7 @@ elseif rank > 0
     send_status = MPI.Isend(send_buf, comm; dest=(rank + 1) % size)
 end
 
-# rank 1 receives from last rank 
+# rank 0 receives from last rank 
 if rank == 0
     recv_status = MPI.Irecv!(recv_buf, comm; source=(size - 1))
 end

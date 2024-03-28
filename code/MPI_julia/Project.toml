@@ -1,2 +1,4 @@
 [deps]
+Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
+DistributedArrays = "aaf54ef3-cdf8-58ed-94cc-d582ad619b94"
 MPI = "da04e1cc-30fd-572f-bb4f-1f8673147195"

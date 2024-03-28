@@ -25,4 +25,3 @@ if rank == 0
 end
 
 print("My rank is $(rank)\n I received this: $(data)\n")
-MPI.Barrier(comm)
