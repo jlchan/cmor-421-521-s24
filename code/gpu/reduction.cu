@@ -2,7 +2,7 @@
 #include <math.h>
 #include <cuda_runtime.h>
 
-#define BLOCKSIZE 128
+#define BLOCKSIZE 256
 
 __global__ void partial_reduction(const int N, float *x_reduced, const float *x){
   
@@ -52,7 +52,7 @@ int main(int argc, char * argv[]){
   float * x_reduced = new float[numBlocks];  
 
   for (int i = 0; i < N; ++i){
-    x[i] = i + 1.f;
+    x[i] = 1.f;
   }
 
   // allocate memory and copy to the GPU
@@ -77,7 +77,8 @@ int main(int argc, char * argv[]){
     sum_x += x_reduced[i];
   }
 
-  float target = N * (N+1) / 2.f;
+  //  float target = N * (N+1) / 2.f;
+  float target = N;
   printf("error = %f\n", fabs(sum_x - target));
 
 #if 1
